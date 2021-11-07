@@ -67,6 +67,14 @@ With `current` or `all` you can change gaps either for only the currently focuse
 
 You can find an example configuration in the [wiki](https://github.com/Airblader/i3/wiki/Example-Configuration).
 
+### Rounded Window Corners
+
+Rounded corners can be configured by adding this to your config. `5` can be replaced with any integer, it just defines the radius of the corner.
+
+```
+border_radius 5
+```
+
 ### Smart Gaps
 
 Gaps can be automatically turned on/off on a workspace in certain scenarios using the following config directives:
