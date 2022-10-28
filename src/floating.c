@@ -253,7 +253,7 @@ bool floating_enable(Con *con, bool automatic) {
         }
         /* Consider the part of the focus stack of our current workspace:
          * [ ... S_{i-1} S_{i} S_{i+1} ... ]
-         * Where S_{x} is a container tree and the container 'con' that is beeing switched to
+         * Where S_{x} is a container tree and the container 'con' that is being switched to
          * floating belongs in S_{i}. The new floating container, 'nc', will have the
          * workspace as its parent so it needs to be placed in this stack. If C was focused
          * we just need to call con_focus(). Otherwise, nc must be placed before or after S_{i}.
@@ -347,8 +347,9 @@ bool floating_enable(Con *con, bool automatic) {
     con->floating = FLOATING_USER_ON;
 
     /* 4: set the border style as specified with new_float */
-    if (automatic)
-        con->border_style = config.default_floating_border;
+    if (automatic) {
+        con->border_style = con->max_user_border_style = config.default_floating_border;
+    }
 
     /* Add pixels for the decoration. */
     Rect border_style_rect = con_border_style_rect(con);
@@ -697,6 +698,10 @@ DRAGGING_CB(resize_window_callback) {
 void floating_resize_window(Con *con, const bool proportional,
                             const xcb_button_press_event_t *event) {
     DLOG("floating_resize_window\n");
+
+    /* Push changes before resizing, so that the window gets raised now and not
+     * after the user releases the mouse button */
+    tree_render();
 
     /* corner saves the nearest corner to the original click. It contains
      * a bitmask of the nearest borders (BORDER_LEFT, BORDER_RIGHT, …) */
