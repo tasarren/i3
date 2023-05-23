@@ -5,6 +5,14 @@
 
 # i3-gaps
 
+## Project status
+
+:warning: :warning: :warning:
+
+The i3-gaps project has been merged with i3. All i3-gaps features will become available with i3 4.22 (not released yet at the time of writing this).
+
+Package maintainers are asked to replace any i3-gaps packages with the i3 package once i3 4.22 has been released. This repository will be archived and no longer be kept up to date.
+
 ## What is i3-gaps?
 
 i3-gaps is a fork of [i3wm](https://www.i3wm.org), a tiling window manager for X11. It is kept up to date with upstream, adding a few additional features such as gaps between windows (see below for a complete list).
@@ -31,7 +39,7 @@ For support & all other kinds of questions, you can ask your question on [GitHub
 
 ```
 # You can also use any non-zero value if you'd like to have a border
-for_window [all] border pixel 0
+default_border pixel 0
 ```
 
 Gaps are the namesake feature of i3-gaps and add spacing between windows/containers. Gaps come in two flavors, inner and outer gaps wherein inner gaps are those between two adjacent containers (or a container and an edge) and outer gaps are an additional spacing along the screen edges. Gaps can be configured in your config either globally or per workspace, and can additionally be changed during runtime using commands (e.g., through `i3-msg`).
